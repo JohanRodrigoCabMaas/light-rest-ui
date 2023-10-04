@@ -1,0 +1,12 @@
+<div class="h-full flex flex-col items-center justify-between">
+	<div class="flex flex-col items-center gap-10">
+		<svg-icon
+			*ngFor="let menu of menuList"
+			[src]="menu.icon"
+			class="icon-size cursor-pointer"
+			(click)="onRedirect(menu.redirecTo)"
+		></svg-icon>
+	</div>
+
+	<svg-icon [src]="config.icon" class="icon-size cursor-pointer" (click)="onRedirect(config.redirecTo)"></svg-icon>
+</div>
