@@ -1,1 +1,40 @@
-<p>configutarions-page works!</p>
+<div class="flex">
+	<div class="flex-1">
+		<div class="min-h-screen bg-gray-100 flex flex-col py-12 sm:px-6 lg:px-8">
+			<div class="table-auto mx-auto border-collapse w-full">
+				<div>
+					<div class="bg-gray-200">
+						<button type="button" class="p-2" mat-button (click)="openDialog()">
+							llenar informacion de la empresa
+						</button>
+					</div>
+				</div>
+				<div>
+					<ng-container *ngFor="let info of infoData; let i = index">
+						<div class="p-2">
+							<div class="border bg-white p-4 grid grid-cols-2 text-xl rounded-2xl">
+								<p>Nombre de la empresa: {{ info.nameCompany | uppercase }}</p>
+								<p>Número de teléfono: {{ info.phoneNumber | uppercase }}</p>
+								<p>Dirección: {{ info.address | uppercase }}</p>
+								<p>Ciudad: {{ info.city | uppercase }}</p>
+								<p>Estado: {{ info.state | uppercase }}</p>
+								<p>Código postal: {{ info.postalCode | uppercase }}</p>
+								<p>País: {{ info.country | uppercase }}</p>
+								<p>Description: {{ info.description | uppercase }}</p>
+							</div>
+						</div>
+						<button
+							type="button"
+							class="p-2 ml-2 bg-blue-500 rounded-full text-white"
+							(click)="actualizarDatos(info.id)"
+							*ngIf="isAdmin()"
+						>
+							Actualizar Datos
+						</button>
+					</ng-container>
+					<button class="p-2 ml-2 bg-red-500 rounded-full text-white" (click)="logout()">Cerrar Sesión</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

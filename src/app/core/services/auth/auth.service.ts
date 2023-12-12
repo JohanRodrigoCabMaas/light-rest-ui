@@ -9,10 +9,12 @@ import { TokenResponse } from '@app-core/interface/token.response';
 	providedIn: 'root'
 })
 export class AuthService {
+	currentUser: any;
+	currentRole: string;
 	constructor(private _httpCliente: HttpClient) {}
 
-	login(email: string, password: string): Observable<any> {
-		return this._httpCliente.post(`api/auth/login`, { email, password }).pipe(
+	login(username: string, password: string, role: string): Observable<any> {
+		return this._httpCliente.post(`api/auth/login`, { username, password, role }).pipe(
 			map((tokenResponse: TokenResponse) => {
 				if (!tokenResponse?.access_token) {
 					return null;
@@ -20,9 +22,33 @@ export class AuthService {
 
 				const { access_token } = tokenResponse;
 				localStorage.setItem(ACCESS_TOKEN, JSON.stringify(access_token));
-				const { user } = jwt_decode(access_token) as any;
-				return user;
+				localStorage.setItem('userRole', role);
+				localStorage.setItem('username', username);
+				this.currentRole = role;
+				this.currentUser = jwt_decode(access_token) as any; // Almacena la información del usuario
+				return this.currentUser;
 			})
 		);
+	}
+	isLoggedIn(): boolean {
+		// Verifica si el token de acceso está presente
+		return !!localStorage.getItem(ACCESS_TOKEN);
+	}
+
+	logout(): void {
+		// Elimina el token de acceso y realiza cualquier otra limpieza necesaria al cerrar sesión
+		localStorage.removeItem(ACCESS_TOKEN);
+		localStorage.removeItem('userRole');
+		localStorage.removeItem('username');
+		this.currentUser = null;
+		this.currentRole = null;
+	}
+	getEmail(): string {
+		// Obtener el email almacenado en el localStorage
+		return localStorage.getItem('username') || '';
+	}
+	gettipo(): string {
+		// Obtener el email almacenado en el localStorage
+		return localStorage.getItem('userRole') || '';
 	}
 }

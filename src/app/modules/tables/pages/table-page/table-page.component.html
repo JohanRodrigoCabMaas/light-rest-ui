@@ -1,1 +1,30 @@
-<p>table-page works!</p>
+<div class="min-h-screen fondoultimo flex flex-col py-10 sm:px-6 lg:px-8">
+	<div class="flex space-x-4 mb-4">
+		<div class="space-x-4 bg-white rounded-full w-auto p-2">
+			<button class="px-4 py-2 Btn1 text-white rounded-full" (click)="applyFilter('all')">All Table</button>
+			<button class="px-4 py-2 Btn2 text-white rounded-full" (click)="applyFilter('Unoccupied')">Unoccupied</button>
+			<button class="px-4 py-2 Btn3 text-white rounded-full" (click)="applyFilter('Occupied')">Occupied</button>
+			<button class="agregar" mat-button (click)="openDialog()" *ngIf="isAdmin()">add new table</button>
+		</div>
+	</div>
+	<div class="flex">
+		<div>Table visible are for 4-6 guets ocupancy</div>
+	</div>
+	<div class="flex">
+		<div class="flex flex-wrap -mx-4">
+			<div *ngFor="let table of tables" class="w-1/8 px-4 mb-4" (click)="selectTable(table)">
+				<div class="Btn2 h-28 rounded-2xl" [style.background-color]="table.color || ''">
+					<img [src]="getTableImage(table)" alt="Table Image" class="w-24 h-24 rounded-md" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex pt-24">
+		<div class="flex ml-auto rounded-3xl py-5" *ngIf="selectedTable">
+			<div class="flex items-center bg-white rounded-full p-3">
+				<span class="mr-2">Table {{ selectedTable.numberOfChairs }} guests</span>
+				<button class="px-3 py-2 bg-blue-500 text-white rounded-full" (click)="reserveTable()">Reserve</button>
+			</div>
+		</div>
+	</div>
+</div>

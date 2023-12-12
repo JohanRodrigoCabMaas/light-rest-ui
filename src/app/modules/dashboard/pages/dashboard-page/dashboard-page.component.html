@@ -1,1 +1,17 @@
-<p>dashboard-page works!</p>
+<div class="fondo">
+	<div class="flex justify-center">
+		<div class="bg-white mb-6 mx-auto rounded-2xl mt-4 w-96 h-10 flex items-center">
+			<div class="font-bold text-center w-full text-xl">Ganancias de ventas de Hoy</div>
+		</div>
+	</div>
+	<div class="flex justify-center items-center">
+		<div class="tamanioGrafica bg-white rounded-md p-4">
+			<canvas baseChart [type]="lineChartType" [data]="lineChartData" [options]="lineChartOptions"></canvas>
+			<div class="flex justify-center mt-4">
+				<div class="rounded-2xl flex items-center">
+					<div class="font-bold text-center w-full text-xl">Última Ganancia de Hoy: {{ getLastGain() }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

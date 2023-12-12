@@ -1,1 +1,26 @@
-<p>orders-page works!</p>
+<div class="flex">
+	<div class="flex-1">
+		<div class="min-h-screen bg-gray-100 flex flex-col py-6 sm:px-6 lg:px-8">
+			<table class="table-auto mx-auto border-collapse w-full">
+				<thead>
+					<tr>
+						<th class="bg-gray-300 p-2">Order ID</th>
+						<th class="bg-gray-300 p-2">Date</th>
+						<th class="bg-gray-300 p-2">Total Sale</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						*ngFor="let order of orders; let i = index"
+						[class.bg-white]="i % 2 === 0"
+						[class.bg-gray-100]="i % 2 !== 0"
+					>
+						<td class="p-2 text-center">#000000000{{ order.id }}</td>
+						<td class="p-2 text-center">{{ order.createdAt | date : 'dd/MM/yyyy' }}</td>
+						<td class="p-2 text-center">${{ order.total }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

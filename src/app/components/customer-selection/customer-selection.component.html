@@ -1,0 +1,21 @@
+<!-- customer-selection.component.html -->
+<div
+	class="fixed inset-0 z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+>
+	<div class="relative w-auto max-w-3xl mx-auto my-6">
+		<!-- Contenido del cuadro de diálogo -->
+		<div
+			class="border rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-6"
+		></div>
+	</div>
+</div>
+<div class="fixed inset-0 bg-black opacity-50"></div>
+
+<mat-list>
+	<mat-list-item *ngFor="let customer of customers" (click)="selectCustomer(customer)">
+		{{ customer.firstName }}
+		<button mat-icon-button (click)="selectCustomer(customer)">
+			<mat-icon>check</mat-icon>
+		</button>
+	</mat-list-item>
+</mat-list>

@@ -1,0 +1,186 @@
+<div
+	class="fixed inset-0 z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+>
+	<div class="relative w-auto max-w-3xl mx-auto my-6">
+		<!-- Contenido del cuadro de diálogo -->
+		<div class="border rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-6">
+			<h2 class="text-sm font-semibold mb-4 text-center">Favor de registra la informacion de la empresa</h2>
+
+			<form (submit)="updateInfo()" [formGroup]="configurationForm" class="grid grid-cols-2 gap-4">
+				<div class="mb-4">
+					<label for="nameCompany" class="block text-gray-600 text-xs font-medium mb-2">Name Company</label>
+					<input
+						type="text"
+						id="nameCompany"
+						name="nameCompany"
+						formControlName="nameCompany"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('nameCompany').hasError('required') &&
+							(configurationForm.get('nameCompany').dirty || configurationForm.get('nameCompany').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+
+				<div class="mb-4">
+					<label for="phoneNumber" class="block text-gray-600 text-xs font-medium mb-2">phone Number</label>
+					<input
+						type="text"
+						id="phoneNumber"
+						name="phoneNumber"
+						formControlName="phoneNumber"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('phoneNumber').hasError('required') &&
+							(configurationForm.get('phoneNumber').dirty || configurationForm.get('phoneNumber').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="address" class="block text-gray-600 text-xs font-medium mb-2">address</label>
+					<input
+						type="text"
+						id="address"
+						name="address"
+						formControlName="address"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('address').hasError('required') &&
+							(configurationForm.get('address').dirty || configurationForm.get('address').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="city" class="block text-gray-600 text-xs font-medium mb-2">City</label>
+					<input
+						type="text"
+						id="city"
+						name="city"
+						formControlName="city"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('city').hasError('required') &&
+							(configurationForm.get('city').dirty || configurationForm.get('city').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="state" class="block text-gray-600 text-xs font-medium mb-2">State</label>
+					<input
+						type="text"
+						id="state"
+						name="state"
+						formControlName="state"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('state').hasError('required') &&
+							(configurationForm.get('state').dirty || configurationForm.get('state').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="postalCode" class="block text-gray-600 text-xs font-medium mb-2">Postal Code</label>
+					<input
+						type="text"
+						id="postalCode"
+						name="postalCode"
+						formControlName="postalCode"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('postalCode').hasError('required') &&
+							(configurationForm.get('postalCode').dirty || configurationForm.get('postalCode').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="country" class="block text-gray-600 text-xs font-medium mb-2">Country</label>
+					<input
+						type="text"
+						id="country"
+						name="country"
+						formControlName="country"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					/>
+					<div
+						*ngIf="
+							configurationForm.get('country').hasError('required') &&
+							(configurationForm.get('country').dirty || configurationForm.get('country').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="description" class="block text-gray-600 text-xs font-medium mb-2">description</label>
+					<textarea
+						type="text"
+						id="description"
+						name="description"
+						formControlName="description"
+						class="px-3 py-2 border rounded-lg w-full focus:ring focus:ring-blue-300"
+					></textarea>
+					<div
+						*ngIf="
+							configurationForm.get('description').hasError('required') &&
+							(configurationForm.get('description').dirty || configurationForm.get('description').touched)
+						"
+						class="text-red-500 text-xs mt-1"
+					>
+						Este campo es requerido.
+					</div>
+				</div>
+
+				<div class="mb-4 col-span-2">
+					<button
+						type="submit"
+						class="bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer mr-2 hover:bg-blue-700"
+						mat-button
+						[mat-dialog-close]="'Resultado de cierre'"
+					>
+						Guardar
+					</button>
+					<button
+						type="button"
+						class="text-blue-500 border border-blue-500 py-2 px-4 rounded-lg cursor-pointer hover:text-blue-700"
+						mat-button
+						[mat-dialog-close]="'Resultado de cierre'"
+					>
+						Cerrar
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="fixed inset-0 bg-black opacity-50"></div>

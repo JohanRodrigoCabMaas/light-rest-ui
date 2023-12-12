@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '@app-core/models/user';
@@ -15,8 +15,9 @@ export class LoginPageComponent {
 
 	constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
 		this.loginForm = this.fb.group({
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', Validators.required]
+			username: ['', [Validators.required]],
+			password: ['', Validators.required],
+			role: ['', Validators.required]
 		});
 	}
 
@@ -26,8 +27,8 @@ export class LoginPageComponent {
 			return;
 		}
 
-		const { email, password } = this.loginForm.value;
-		this.authService.login(email, password).subscribe((user: User) => {
+		const { username, password, role } = this.loginForm.value;
+		this.authService.login(username, password, role).subscribe((user: User) => {
 			this.router.navigate(['/dashboard']);
 		});
 	}

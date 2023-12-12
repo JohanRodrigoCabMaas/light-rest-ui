@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomersPageComponent } from './pages/customers-page/customers-page.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RegistroCustomerComponent } from 'app/components/registro-customer/registro-customer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
 	{
@@ -11,7 +15,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	declarations: [CustomersPageComponent],
-	imports: [CommonModule, RouterModule.forChild(routes)]
+	declarations: [CustomersPageComponent, RegistroCustomerComponent],
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),
+		FormsModule,
+		MatDialogModule,
+		MatButtonModule,
+		ReactiveFormsModule
+	]
 })
 export class CustomersModule {}

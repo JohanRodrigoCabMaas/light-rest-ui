@@ -1,1 +1,88 @@
-<p>products-page works!</p>
+<div class="flex">
+	<div class="flex-1">
+		<div class="min-h-screen bg-gray-100 flex flex-col py-12 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-4 gap-4 text-center">
+				<div class="bg-white p-6 rounded-lg shadow" *ngFor="let product of products; let i = index">
+					<img
+						*ngIf="product.imagePath"
+						[src]="getImageUrl(product)"
+						alt="Product Image"
+						class="mx-auto mb-4 h-24 w-24 rounded-lg"
+						(click)="addProductToCart(product)"
+					/>
+					<h3 class="text-lg leading-6 font-medium text-gray-900">
+						{{ product.productName }}
+					</h3>
+					<p class="mt-2 text-sm text-gray-500">Price: ${{ product.price }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-2/3">
+		<div class="w-full h-full flex items-center bg-gray-100">
+			<div class="bg-white p-4 rounded w-full max-w-screen-xl">
+				<div class="flex m-2">
+					<button class="font-bold rounded pl-2 hover:bg-blue-700" mat-button (click)="openDialog()" *ngIf="isAdmin()">
+						ADD PRODUCT
+					</button>
+				</div>
+				<!-- Encabezado de la tabla (primera fila) -->
+				<div class="flex items-center justify-between mb-2 bg-gray-400 p-2 rounded-md">
+					<p class="font-semibold">Producto</p>
+					<p class="font-semibold">Precio</p>
+				</div>
+
+				<!-- Filas de productos (alternando entre blanco y gris) -->
+				<div *ngFor="let selectedProduct of selectedProducts; let i = index">
+					<div
+						[class.bg-white]="i % 2 === 0"
+						[class.bg-gray-100]="i % 2 !== 0"
+						class="flex items-center justify-between mb-2 p-2 rounded-md"
+					>
+						<p class="font-semibold">{{ selectedProduct.quantity }}</p>
+						<p class="font-semibold">{{ selectedProduct.productName }}</p>
+						<p class="font-semibold">${{ selectedProduct.price }}</p>
+					</div>
+				</div>
+				<div class="h-14"></div>
+
+				<!-- Total (última fila) -->
+				<div class="fondo rounded">
+					<div class="flex">
+						<div class="w-1/2 bg-custom-color p-2 rounded">Subtotal</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">${{ subtotal }}</div>
+					</div>
+
+					<!-- Fila 2 -->
+					<div class="flex rounded-md fondo">
+						<div class="w-1/2 bg-custom-color p-2 rounded">IVA</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">$12</div>
+					</div>
+
+					<!-- Fila 3 -->
+					<div class="flex">
+						<div class="w-1/2 bg-custom-color p-2 rounded">Total Pay</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">${{ total }}</div>
+					</div>
+
+					<!-- Fila 4 con botones -->
+					<div class="flex">
+						<div class="w-1/2 bg-custom-color p-2 rounded">
+							<button
+								class="colorBut1 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+								(click)="resetState()"
+							>
+								Vaciar
+							</button>
+						</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">
+							<button class="color hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="pay()">
+								Pay
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
