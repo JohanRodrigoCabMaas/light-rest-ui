@@ -24,7 +24,6 @@ export class TablePageComponent implements OnInit {
 		this.tableService.getAllTables().subscribe(
 			(tables) => {
 				if (this.filterType !== 'all') {
-					// Filtrar mesas según el color de fondo
 					tables = tables.filter((table) => table.color === this.getColorForFilterType(this.filterType));
 				}
 				this.tables = tables;
@@ -66,7 +65,6 @@ export class TablePageComponent implements OnInit {
 	reserveTable(): void {
 		const defaultColor = '#FF7484';
 		if (this.selectedTable) {
-			// Cambiar el color de fondo del contenedor div solo si hay una mesa seleccionada
 			this.selectedTable.color = defaultColor;
 
 			this.tableService.updateTable(this.selectedTable.id, { color: defaultColor }).subscribe(
@@ -87,15 +85,14 @@ export class TablePageComponent implements OnInit {
 	getColorForFilterType(filterType: string): string {
 		switch (filterType) {
 			case 'Unoccupied':
-				return '#71E687'; // Color para mesas desocupadas
+				return '#71E687';
 			case 'Occupied':
-				return '#FF7484'; // Color para mesas ocupadas
+				return '#FF7484';
 			default:
-				return ''; // Para el caso 'all', no se aplica filtro por color
+				return '';
 		}
 	}
 	isAdmin(): boolean {
-		// Verificar si el usuario actual tiene el rol de "admin"
 		return this.authService.currentRole === 'admin';
 	}
 }

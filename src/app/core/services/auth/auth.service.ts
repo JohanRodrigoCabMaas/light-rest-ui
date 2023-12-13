@@ -44,11 +44,9 @@ export class AuthService {
 		this.currentRole = null;
 	}
 	getEmail(): string {
-		// Obtener el email almacenado en el localStorage
 		return localStorage.getItem('username') || '';
 	}
 	gettipo(): string {
-		// Obtener el email almacenado en el localStorage
 		return localStorage.getItem('userRole') || '';
 	}
 }

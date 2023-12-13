@@ -74,7 +74,7 @@ export class DashboardPageComponent implements OnInit {
 			const lastGain = this.lineChartData.datasets[0].data[this.lineChartData.datasets[0].data.length - 1];
 			return `$${lastGain}`;
 		} else {
-			return 'N/A'; // Puedes ajustar esto según tus necesidades
+			return 'N/A';
 		}
 	}
 }

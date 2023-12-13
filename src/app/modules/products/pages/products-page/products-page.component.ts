@@ -44,7 +44,6 @@ export class ProductsPageComponent implements OnInit {
 		dialogRef.afterClosed().subscribe((selectedCustomer) => {
 			if (selectedCustomer) {
 				console.log('Cliente seleccionado:', selectedCustomer);
-				// Puedes asignar selectedCustomer a una propiedad y mostrarla en tu interfaz según sea necesario
 				this.selectedCustomer = selectedCustomer;
 			}
 		});
@@ -136,7 +135,6 @@ export class ProductsPageComponent implements OnInit {
 		this.total = 0;
 	}
 	isAdmin(): boolean {
-		// Verificar si el usuario actual tiene el rol de "admin"
 		return this.authService.currentRole === 'admin';
 	}
 }

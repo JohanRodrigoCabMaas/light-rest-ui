@@ -13,6 +13,7 @@ import { InformacionEmpresaComponent } from 'app/components/informacion-empresa/
 })
 export class ConfigutarionsPageComponent implements OnInit {
 	infoData: any[] = [];
+	primeraVezRegistrado: boolean = false;
 	constructor(
 		public dialog: MatDialog,
 		private configurationService: ConfigurationService,
@@ -22,6 +23,8 @@ export class ConfigutarionsPageComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadInfoData();
+		const storedState = localStorage.getItem('primeraVezRegistrado');
+		this.primeraVezRegistrado = storedState === 'true';
 	}
 
 	openDialog(): void {
@@ -32,6 +35,8 @@ export class ConfigutarionsPageComponent implements OnInit {
 		dialogRef.afterClosed().subscribe((result) => {
 			console.log(`Diálogo cerrado con resultado: ${result}`);
 			this.loadInfoData();
+			this.primeraVezRegistrado = true;
+			localStorage.setItem('primeraVezRegistrado', String(this.primeraVezRegistrado));
 		});
 	}
 	private loadInfoData(): void {
@@ -47,12 +52,12 @@ export class ConfigutarionsPageComponent implements OnInit {
 	actualizarDatos(infoId: number): void {
 		const dialogRef = this.dialog.open(ActualizarInfoComponent, {
 			width: '1000px',
-			data: { infoId: infoId } // Pasa el infoId al componente de actualización
+			data: { infoId: infoId }
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {
 			console.log(`Diálogo cerrado con resultado: ${result}`);
-			this.loadInfoData(); // Actualiza la información después de cerrar el diálogo de actualización
+			this.loadInfoData();
 		});
 	}
 	logout(): void {
@@ -60,7 +65,6 @@ export class ConfigutarionsPageComponent implements OnInit {
 		this.router.navigate(['/login']);
 	}
 	isAdmin(): boolean {
-		// Verificar si el usuario actual tiene el rol de "admin"
 		return this.authService.currentRole === 'admin';
 	}
 }
