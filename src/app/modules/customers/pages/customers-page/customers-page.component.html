@@ -11,9 +11,30 @@
 			</div>
 			<div>
 				<div *ngFor="let customer of filterCustomers()">
-					<div class="card bg-white m-5 rounded-2xl px-4 py-4" (click)="toggleDetails(customer)">
-						<div class="card-header font-bold">
-							{{ customer.firstName | uppercase }} {{ customer.lastName | uppercase }}
+					<div class="card bg-white m-5 rounded-2xl px-4 py-4">
+						<div class="flex items-center justify-between">
+							<div class="flex items-center">
+								<div class="card-header font-bold">
+									{{ customer.firstName | uppercase }} {{ customer.lastName | uppercase }}
+								</div>
+								<div class="flex-1 ml-96 pl-96">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="28"
+										height="28"
+										fill="black"
+										class="bi"
+										(click)="toggleDetails(customer)"
+										class="cursor-pointer"
+										viewBox="0 0 16 16"
+									>
+										<path
+											fill-rule="evenodd"
+											d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"
+										/>
+									</svg>
+								</div>
+							</div>
 						</div>
 						<div *ngIf="customer.isExpanded" class="card-details bg-white m-4">
 							<p>Teléfono: {{ customer.phoneNumber }}</p>

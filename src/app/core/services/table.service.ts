@@ -7,7 +7,7 @@ import { ServerResponse } from '@app-core/interface/serverResponse.interface';
 	providedIn: 'root'
 })
 export class TableService {
-	private apiUrl = 'http://localhost:3000/tables'; // Reemplaza esto con la URL real de tu API
+	private apiUrl = 'http://localhost:3000/tables';
 
 	constructor(private http: HttpClient) {}
 
@@ -20,5 +20,9 @@ export class TableService {
 	updateTable(id: number, updatedData: any): Observable<any> {
 		const url = `${this.apiUrl}/${id}`;
 		return this.http.patch<ServerResponse>(url, updatedData).pipe(map((response) => response.data));
+	}
+	deleteTable(id: number): Observable<any> {
+		const url = `${this.apiUrl}/${id}`;
+		return this.http.delete<ServerResponse>(url).pipe(map((response) => response.data));
 	}
 }

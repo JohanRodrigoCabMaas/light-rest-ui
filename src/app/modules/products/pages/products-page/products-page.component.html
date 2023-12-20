@@ -13,7 +13,7 @@
 					<h3 class="text-lg leading-6 font-medium text-gray-900">
 						{{ product.productName }}
 					</h3>
-					<p class="mt-2 text-sm text-gray-500">Price: ${{ product.price }}</p>
+					<p class="mt-2 text-sm text-gray-500">Price: {{ product.price | currency }}</p>
 				</div>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 			<div class="bg-white p-4 rounded w-full max-w-screen-xl">
 				<div class="flex m-2">
 					<button class="font-bold rounded pl-2 hover:bg-blue-700" mat-button (click)="openDialog()" *ngIf="isAdmin()">
-						ADD PRODUCT
+						Agregar Producto
 					</button>
 				</div>
 				<div class="flex items-center justify-between mb-2 bg-gray-400 p-2 rounded-md">
@@ -39,7 +39,7 @@
 					>
 						<p class="font-semibold">{{ selectedProduct.quantity }}</p>
 						<p class="font-semibold">{{ selectedProduct.productName }}</p>
-						<p class="font-semibold">${{ selectedProduct.price }}</p>
+						<p class="font-semibold">{{ selectedProduct.price | currency }}</p>
 					</div>
 				</div>
 				<div class="h-14"></div>
@@ -47,7 +47,7 @@
 				<div class="fondo rounded">
 					<div class="flex">
 						<div class="w-1/2 bg-custom-color p-2 rounded">Subtotal</div>
-						<div class="w-1/2 bg-custom-color p-2 rounded">${{ subtotal }}</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">{{ subtotal | currency }}</div>
 					</div>
 
 					<div class="flex rounded-md fondo">
@@ -56,8 +56,8 @@
 					</div>
 
 					<div class="flex">
-						<div class="w-1/2 bg-custom-color p-2 rounded">Total Pay</div>
-						<div class="w-1/2 bg-custom-color p-2 rounded">${{ total }}</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">Pago Total</div>
+						<div class="w-1/2 bg-custom-color p-2 rounded">{{ total | currency }}</div>
 					</div>
 
 					<div class="flex">
@@ -71,7 +71,7 @@
 						</div>
 						<div class="w-1/2 bg-custom-color p-2 rounded">
 							<button class="color hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="pay()">
-								Pay
+								Pagar
 							</button>
 						</div>
 					</div>

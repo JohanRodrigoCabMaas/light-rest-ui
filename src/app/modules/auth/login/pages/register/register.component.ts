@@ -13,6 +13,7 @@ import { RegisterService } from '@app-core/services/auth/register.service';
 export class RegisterComponent {
 	registerForm: FormGroup;
 	errorMessage: string = '';
+	isFormValid: boolean = false;
 
 	constructor(private fb: FormBuilder, private registerService: RegisterService, private router: Router) {
 		this.registerForm = this.fb.group({
@@ -21,6 +22,9 @@ export class RegisterComponent {
 			password: ['', [Validators.required, Validators.minLength(6)]],
 			fullName: ['', [Validators.required]],
 			role: ['', [Validators.required]]
+		});
+		this.registerForm.valueChanges.subscribe(() => {
+			this.isFormValid = this.registerForm.valid;
 		});
 	}
 

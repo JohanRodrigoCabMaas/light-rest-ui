@@ -95,4 +95,31 @@ export class TablePageComponent implements OnInit {
 	isAdmin(): boolean {
 		return this.authService.currentRole === 'admin';
 	}
+	deleteTable(): void {
+		if (this.selectedTable) {
+			const tableIdToDelete = this.selectedTable.id;
+
+			this.tableService.deleteTable(tableIdToDelete).subscribe(
+				() => {
+					console.log('Mesa eliminada con éxito');
+					this.loadTables();
+				},
+				(error) => {
+					console.error('Error al eliminar la mesa:', error);
+				}
+			);
+		}
+	}
+	desocupar(): void {
+		if (this.selectedTable) {
+			const defaultColor = '#FF7484';
+			const invertedColor = '#71E687';
+
+			this.selectedTable.color = invertedColor;
+
+			this.tableService.updateTable(this.selectedTable.id, { color: invertedColor }).subscribe(() => {
+				this.loadTables();
+			});
+		}
+	}
 }
